@@ -1,0 +1,107 @@
+<!DOCTYPE html><html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwigames - Inicio de Sesión</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #e0f7fa; /* azul cielo */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }.main-title {
+  font-size: 2em;
+  color: #1976d2; /* azul cielo oscuro */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.container {
+  background-color: #f0f0f0; /* gris claro */
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 400px;
+  padding: 30px;
+}
+
+h2 {
+  text-align: center;
+  color: #388e3c; /* verde claro */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #388e3c; /* verde claro */
+  color: white;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #2e7d32;
+}
+
+.toggle {
+  text-align: center;
+  margin-top: 15px;
+  color: #1976d2; /* azul cielo oscuro */
+  cursor: pointer;
+}
+
+  </style>
+</head>
+<body>
+  <div class="main-title">Riwi Games</div>
+  <div class="container">
+    <h2 id="form-title">Iniciar Sesión</h2>
+    <form id="auth-form">
+      <input type="text" id="username" placeholder="Usuario" required>
+      <input type="password" id="password" placeholder="Contraseña" required>
+      <button type="submit">Entrar</button>
+    </form>
+    <div class="toggle" onclick="toggleForm()">¿No tienes cuenta? Crea una aquí</div>
+  </div>  <script>
+    const form = document.getElementById('auth-form');
+    const formTitle = document.getElementById('form-title');
+    const toggle = document.querySelector('.toggle');
+
+    let isLogin = true;
+
+    function toggleForm() {
+      isLogin = !isLogin;
+      form.innerHTML = isLogin ? `
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Entrar</button>
+      ` : `
+        <input type="text" id="username" placeholder="Usuario" required>
+        <input type="email" id="email" placeholder="Correo Electrónico" required>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <button type="submit">Crear Cuenta</button>
+      `;
+      formTitle.textContent = isLogin ? 'Iniciar Sesión' : 'Crear Cuenta';
+      toggle.textContent = isLogin ? '¿No tienes cuenta? Crea una aquí' : '¿Ya tienes cuenta? Inicia sesión';
+    }
+  </script></body>
+</html>
