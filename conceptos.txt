@@ -1,0 +1,302 @@
+
+🧠 GUÍA COMPLETA PARA EXAMEN DE HTML Y CSS
+🔹 1. HTML5 SEMÁNTICO
+Etiquetas más comunes:
+<header>      <!-- Encabezado del sitio o sección -->
+<nav>         <!-- Menú de navegación -->
+<main>        <!-- Contenido principal -->
+<section>     <!-- Agrupaciones temáticas -->
+<article>     <!-- Contenido independiente (blogs, noticias) -->
+<aside>       <!-- Contenido complementario -->
+<footer>      <!-- Pie de página -->
+
+Buenas prácticas:
+- Usar etiquetas semánticas en lugar de <div> para estructura.
+- Anidar correctamente.
+- Atributos clave: alt, title, href, src, aria-* para accesibilidad.
+
+🔹 2. SELECTORES EN CSS
+/* Selectores básicos */
+*           { }     /* Universal */
+element     { }     /* Tipo */
+#id         { }     /* ID */
+.class      { }     /* Clase */
+element, p  { }     /* Múltiples */
+
+/* Selectores de jerarquía */
+div p       { }     /* Descendiente */
+div > p     { }     /* Hijo directo */
+div + p     { }     /* Hermano adyacente */
+div ~ p     { }     /* Hermanos generales */
+
+/* Pseudo-clases */
+a:hover         { color: red; }
+li:first-child  { font-weight: bold; }
+input:focus     { border: 1px solid blue; }
+
+/* Pseudo-elementos */
+p::first-line   { color: blue; }
+p::before       { content: "➤ "; }
+
+🔹 3. ESPECIFICIDAD EN CSS
+Selector    Especificidad
+Elemento    0,0,1
+Clase       0,1,0
+ID          1,0,0
+Inline style 1,0,0,0
+!important   Ignora todo
+
+Consejos:
+- No abuses de !important.
+- Usa clases para mantener el CSS mantenible.
+- Orden: lo más específico sobreescribe lo menos.
+
+🔹 4. FLEXBOX
+.container {
+  display: flex;
+  flex-direction: row | column;
+  justify-content: center | space-between | space-around | space-evenly;
+  align-items: center | flex-start | flex-end | stretch;
+  flex-wrap: wrap;
+}
+.item {
+  flex: 1;
+  align-self: flex-start;
+}
+
+🔹 5. GRID
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  gap: 1rem;
+  justify-items: center;
+  align-items: center;
+}
+.item {
+  grid-column: 1 / 3;
+  grid-row: 2 / 3;
+}
+
+🔹 6. MEDIA QUERIES
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+Breakpoints comunes:
+480px = móviles
+768px = tablets
+1024px = laptops
+1200px = pantallas grandes
+
+🔹 7. TRANSICIONES CSS
+.element {
+  transition: all 0.3s ease-in-out;
+}
+.element:hover {
+  background-color: red;
+}
+
+🔹 8. ANIMACIONES CSS
+@keyframes mover {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(100px); }
+}
+.elemento {
+  animation: mover 1s infinite alternate;
+}
+
+🔹 9. UNIDADES Y MEDIDAS
+Absolutas: px, cm, mm, in
+Relativas: %, em, rem, vw, vh
+em: relativo al padre
+rem: relativo al html
+vw: porcentaje del ancho de la ventana
+vh: porcentaje del alto de la ventana
+
+🔹 10. OPTIMIZACIÓN DE RECURSOS
+- Usa imágenes comprimidas (webp, jpeg optimizado)
+- Usa lazy loading en imágenes: <img loading="lazy">
+- Minifica tu CSS y JS
+- Usa variables CSS:
+:root {
+  --main-color: #333;
+}
+body {
+  color: var(--main-color);
+}
+- Usa font-display: swap para mejorar tiempos de carga de fuentes
+
+🔹 11. BONUS: UTILIDADES EXPRESS
+.center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.center-grid {
+  display: grid;
+  place-items: center;
+}
+@media (max-width: 768px) {
+  .hide-mobile {
+    display: none;
+  }
+}
+.ellipsis {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+🧾 CONSEJOS GENERALES PARA EL EXAMEN
+✅ Usa clases descriptivas (.menu-principal, .btn-secundario)
+✅ Escribe primero el HTML estructurado, luego aplica el CSS
+✅ Siempre verifica el orden de los selectores y la cascada
+✅ Si algo no se centra: revisa el display, width, y margin: auto
+✅ Valida tu HTML con: https://validator.w3.org/
+
+🔹 CSS Position (posicionamiento)
+position: static | relative | absolute | fixed | sticky;
+
+1. static: Por defecto. No admite top/right/left/bottom.
+2. relative: Se posiciona desde su lugar original.
+3. absolute: Sacado del flujo normal, respecto a contenedor posicionado.
+4. fixed: Fijo en pantalla, no se mueve al hacer scroll.
+5. sticky: Se pega al llegar al umbral (top: X).
+
+⚙️ Propiedades de posición
+- top, bottom, left, right
+- z-index: Control de superposición
+
+📚 Comparativa rápida
+Valor     Flujo   Referencia    Se mueve con scroll
+static    Sí      Normal        Sí
+relative  Sí      Su lugar      Sí
+absolute  No      Ancestro      Sí
+fixed     No      Ventana       No
+sticky    Sí/No   Umbral        Depende
+
+🛠️ Ejemplo práctico
+<div class="wrapper">
+  <div class="rel">Contenedor relativo</div>
+  <div class="abs">Contenedor absoluto</div>
+</div>
+.wrapper {
+  position: relative;
+}
+.rel {
+  position: relative;
+  top: 10px;
+}
+.abs {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+🔹 CSS Transforms
+.element {
+  transform: none | matrix(...) | translate(...) | rotate(...) | scale(...) | skew(...);
+}
+translate(30px, 50%);
+rotate(45deg);
+scale(1.2, 0.8);
+skew(30deg, 10deg);
+matrix(a, b, c, d, e, f);
+
+transform-origin: left top;
+transform-origin: 20px 50%;
+
+transform: translate(0,100px) scale(5);
+
+transform-style: preserve-3d;
+
+.card {
+  transform-origin: bottom center;
+  transform: translateY(-10px) scale(1.05);
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(0) scale(1.1);
+}
+
+**EJEMPLO CARRUSEL**:
+HTML
+<div class="carousel">
+  <input type="radio" name="slides" id="slide1" checked>
+  <input type="radio" name="slides" id="slide2">
+  <input type="radio" name="slides" id="slide3">
+
+  <div class="slides">
+    <div class="slide s1">🌄 Imagen 1</div>
+    <div class="slide s2">🏞️ Imagen 2</div>
+    <div class="slide s3">🌅 Imagen 3</div>
+  </div>
+
+  <div class="nav">
+    <label for="slide1"></label>
+    <label for="slide2"></label>
+    <label for="slide3"></label>
+  </div>
+</div>
+
+CSS
+.carousel {
+  width: 300px;
+  overflow: hidden;
+  position: relative;
+  margin: auto;
+}
+
+.slides {
+  display: flex;
+  width: 300%;
+  transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+  width: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 200px;
+  font-size: 2rem;
+  background: #eee;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+#slide1:checked ~ .slides {
+  transform: translateX(0%);
+}
+#slide2:checked ~ .slides {
+  transform: translateX(-100%);
+}
+#slide3:checked ~ .slides {
+  transform: translateX(-200%);
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 10px;
+}
+.nav label {
+  width: 10px;
+  height: 10px;
+  background: gray;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+Cosas clave para recordar:
+Se usan radio buttons invisibles para controlar qué slide se muestra.
+.slides es un flex container ancho que se mueve con transform.
+Las label actúan como los botones del carrusel.
+
