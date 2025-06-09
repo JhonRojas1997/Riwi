@@ -1,0 +1,272 @@
+🧱 1. HTML SEMÁNTICO
+
+HTML semántico mejora la accesibilidad y el SEO. Usa etiquetas con significado, en vez de <div> para todo.
+
+🏷️ Etiquetas clave
+
+Etiqueta	Uso principal
+
+<header>	Encabezado del sitio o sección  
+<nav>	Navegación principal  
+<main>	Contenido principal  
+<section>	Secciones temáticas  
+<article>	Contenido independiente  
+<aside>	Info complementaria  
+<footer>	Pie de página  ✅ Buenas prácticas
+
+Evita usar <div> cuando una etiqueta semántica tiene más sentido.
+
+Usa alt, title, aria-* para accesibilidad.
+
+Anida correctamente el contenido.
+
+
+---
+
+🎯 2. SELECTORES EN CSS
+
+Los selectores te permiten aplicar estilos a elementos HTML específicos.
+
+🔹 Básicos
+
+{}  /* Todos los elementos */
+
+
+div      {}  /* Por etiqueta /
+#id      {}  / Por ID /
+.class   {}  / Por clase */
+
+🔹 Jerarquía / relación
+
+div p     {}  /* Todos los <p> dentro de div /
+div > p   {}  / Solo hijos directos /
+div + p   {}  / Hermano adyacente /
+div ~ p   {}  / Hermanos posteriores */
+
+🔹 Pseudo-clases
+
+a:hover        {}  /* Al pasar el mouse /
+input:focus    {}  / Cuando se enfoca /
+li:first-child {}  / Primer hijo */
+
+🔹 Pseudo-elementos
+
+p::before     { content: "➤"; }  /* Agrega contenido antes /
+p::first-line { color: red; }   / Modifica primera línea */
+
+
+---
+
+⚖️ 3. ESPECIFICIDAD EN CSS
+
+Determina qué estilo se aplica cuando hay conflicto.
+
+Selector	Valor
+
+Elemento	0,0,1
+Clase .class	0,1,0
+ID #id	1,0,0
+Inline Style	1,0,0,0
+!important	Gana siempre (último recurso)
+
+✅ Consejo: Usa clases para mantener el código limpio y evite abusar de !important.
+
+
+---
+
+🧭 4. FLEXBOX (Diseño unidimensional)
+
+Permite alinear elementos en filas o columnas fácilmente.
+
+.container {
+display: flex;
+flex-direction: row; /* o column /
+justify-content: center; / o space-between, etc. /
+align-items: center;     / o stretch, flex-start */
+}
+
+¿Para qué sirve?
+➡️ Para alinear elementos horizontal y verticalmente sin usar float o margen.
+
+
+---
+
+🧱 5. CSS GRID (Diseño bidimensional)
+
+Ideal para distribuir contenido en filas y columnas.
+
+.container {
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: auto;
+gap: 1rem;
+}
+
+¿Para qué sirve?
+➡️ Para organizar interfaces más complejas (tarjetas, layouts, galerías).
+
+
+---
+
+📱 6. MEDIA QUERIES
+
+Permiten adaptar el diseño según el tamaño de la pantalla.
+
+@media (max-width: 768px) {
+.container {
+flex-direction: column;
+}
+}
+
+¿Para qué sirve?
+➡️ Para que tu sitio sea responsivo y se vea bien en cualquier dispositivo.
+
+Tamaño	Uso
+
+480px	Móviles
+768px	Tablets
+1024px	Laptops
+1200px+	Desktops
+
+
+---
+
+✨ 7. TRANSICIONES Y ANIMACIONES
+
+🎬 Transiciones (cambios suaves)
+
+.button {
+transition: background-color 0.3s ease;
+}
+
+🔄 Animaciones (movimiento continuo)
+
+@keyframes mover {
+0% { transform: translateX(0); }
+100% { transform: translateX(100px); }
+}
+
+.elemento {
+animation: mover 2s infinite alternate;
+}
+
+¿Para qué sirve?
+➡️ Mejora la experiencia visual sin usar JavaScript.
+
+
+---
+
+🌙 8. EJERCICIO: MODO CLARO Y OSCURO
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modo Claro/Oscuro</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <input type="checkbox" id="modo" />
+  <label for="modo" class="switch">🌙 / ☀️</label>
+
+  <main>
+    <h1>¡Hola, Angélica!</h1>
+    <p>Este es un modo claro/oscuro sin usar JavaScript.</p>
+  </main>
+</body>
+</html>
+
+CSS
+/* Estilos base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.4s, color 0.4s;
+}
+
+main {
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Ocultamos el checkbox */
+#modo {
+  display: none;
+}
+
+/* Estilo del botón/label */
+.switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+  box-shadow: 0 0 8px #ccc;
+  transition: background 0.3s;
+}
+
+/* MODO OSCURO */
+#modo:checked ~ main {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+#modo:checked ~ .switch {
+  background: #333;
+  color: #fff;
+}
+
+---
+
+🎠 9. CARRUSEL SENCILLO EN HTML & CSS
+
+<div class="carousel">  
+  <div class="carousel-track">  
+    <img src="img1.jpg" alt="">  
+    <img src="img2.jpg" alt="">  
+    <img src="img3.jpg" alt="">  
+  </div>  
+</div>  .carousel {
+width: 300px;
+overflow: hidden;
+}
+
+.carousel-track {
+display: flex;
+animation: slide 9s infinite;
+}
+
+.carousel-track img {
+width: 300px;
+height: auto;
+}
+
+@keyframes slide {
+0%   { transform: translateX(0); }
+33%  { transform: translateX(-300px); }
+66%  { transform: translateX(-600px); }
+100% { transform: translateX(0); }
+}
+
+➡️ Explicación: Las imágenes se colocan en fila y se mueven horizontalmente con una animación.
+
+
+---
+
+🛠️ 10. OPTIMIZACIÓN
+
+Usa imágenes .webp y compresión.
+
+Aplica loading="lazy" para que carguen solo cuando se vean.
+
+Usa variables CSS para consistencia.
+
+Minifica CSS/JS en producción.
