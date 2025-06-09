@@ -1,302 +1,401 @@
 
-🧠 GUÍA COMPLETA PARA EXAMEN DE HTML Y CSS
-🔹 1. HTML5 SEMÁNTICO
-Etiquetas más comunes:
-<header>      <!-- Encabezado del sitio o sección -->
-<nav>         <!-- Menú de navegación -->
-<main>        <!-- Contenido principal -->
-<section>     <!-- Agrupaciones temáticas -->
-<article>     <!-- Contenido independiente (blogs, noticias) -->
-<aside>       <!-- Contenido complementario -->
-<footer>      <!-- Pie de página -->
+🧱 1. HTML SEMÁNTICO
 
-Buenas prácticas:
-- Usar etiquetas semánticas en lugar de <div> para estructura.
-- Anidar correctamente.
-- Atributos clave: alt, title, href, src, aria-* para accesibilidad.
+HTML semántico mejora la accesibilidad y el SEO. Usa etiquetas con significado, en vez de <div> para todo.
 
-🔹 2. SELECTORES EN CSS
-/* Selectores básicos */
-*           { }     /* Universal */
-element     { }     /* Tipo */
-#id         { }     /* ID */
-.class      { }     /* Clase */
-element, p  { }     /* Múltiples */
+🏷️ Etiquetas clave
 
-/* Selectores de jerarquía */
-div p       { }     /* Descendiente */
-div > p     { }     /* Hijo directo */
-div + p     { }     /* Hermano adyacente */
-div ~ p     { }     /* Hermanos generales */
+Etiqueta	Uso principal
 
-/* Pseudo-clases */
-a:hover         { color: red; }
-li:first-child  { font-weight: bold; }
-input:focus     { border: 1px solid blue; }
+<header>	Encabezado del sitio o sección  
+<nav>	Navegación principal  
+<main>	Contenido principal  
+<section>	Secciones temáticas  
+<article>	Contenido independiente  
+<aside>	Info complementaria  
+<footer>	Pie de página  ✅ Buenas prácticas
 
-/* Pseudo-elementos */
-p::first-line   { color: blue; }
-p::before       { content: "➤ "; }
+Evita usar <div> cuando una etiqueta semántica tiene más sentido.
 
-🔹 3. ESPECIFICIDAD EN CSS
-Selector    Especificidad
-Elemento    0,0,1
-Clase       0,1,0
-ID          1,0,0
-Inline style 1,0,0,0
-!important   Ignora todo
+Usa alt, title, aria-* para accesibilidad.
 
-Consejos:
-- No abuses de !important.
-- Usa clases para mantener el CSS mantenible.
-- Orden: lo más específico sobreescribe lo menos.
+Anida correctamente el contenido.
 
-🔹 4. FLEXBOX
+
+---
+
+🎯 2. SELECTORES EN CSS
+
+Los selectores te permiten aplicar estilos a elementos HTML específicos.
+
+🔹 Básicos
+
+{}  /* Todos los elementos */
+
+
+div      {}  /* Por etiqueta /
+#id      {}  / Por ID /
+.class   {}  / Por clase */
+
+🔹 Jerarquía / relación
+
+div p     {}  /* Todos los <p> dentro de div /
+div > p   {}  / Solo hijos directos /
+div + p   {}  / Hermano adyacente /
+div ~ p   {}  / Hermanos posteriores */
+
+🔹 Pseudo-clases
+
+a:hover        {}  /* Al pasar el mouse /
+input:focus    {}  / Cuando se enfoca /
+li:first-child {}  / Primer hijo */
+
+🔹 Pseudo-elementos
+
+p::before     { content: "➤"; }  /* Agrega contenido antes /
+p::first-line { color: red; }   / Modifica primera línea */
+
+
+---
+
+⚖️ 3. ESPECIFICIDAD EN CSS
+
+Determina qué estilo se aplica cuando hay conflicto.
+
+Selector	Valor
+
+Elemento	0,0,1
+Clase .class	0,1,0
+ID #id	1,0,0
+Inline Style	1,0,0,0
+!important	Gana siempre (último recurso)
+
+✅ Consejo: Usa clases para mantener el código limpio y evite abusar de !important.
+
+
+---
+
+🧭 4. FLEXBOX (Diseño unidimensional)
+
+Permite alinear elementos en filas o columnas fácilmente.
+
 .container {
-  display: flex;
-  flex-direction: row | column;
-  justify-content: center | space-between | space-around | space-evenly;
-  align-items: center | flex-start | flex-end | stretch;
-  flex-wrap: wrap;
-}
-.item {
-  flex: 1;
-  align-self: flex-start;
+display: flex;
+flex-direction: row; /* o column /
+justify-content: center; / o space-between, etc. /
+align-items: center;     / o stretch, flex-start */
 }
 
-🔹 5. GRID
+¿Para qué sirve?
+➡️ Para alinear elementos horizontal y verticalmente sin usar float o margen.
+
+
+---
+
+🧱 5. CSS GRID (Diseño bidimensional)
+
+Ideal para distribuir contenido en filas y columnas.
+
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto;
-  gap: 1rem;
-  justify-items: center;
-  align-items: center;
-}
-.item {
-  grid-column: 1 / 3;
-  grid-row: 2 / 3;
+display: grid;
+grid-template-columns: 1fr 1fr;
+grid-template-rows: auto;
+gap: 1rem;
 }
 
-🔹 6. MEDIA QUERIES
+¿Para qué sirve?
+➡️ Para organizar interfaces más complejas (tarjetas, layouts, galerías).
+
+
+---
+
+📱 6. MEDIA QUERIES
+
+Permiten adaptar el diseño según el tamaño de la pantalla.
+
 @media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-  }
+.container {
+flex-direction: column;
 }
-Breakpoints comunes:
-480px = móviles
-768px = tablets
-1024px = laptops
-1200px = pantallas grandes
-
-🔹 7. TRANSICIONES CSS
-.element {
-  transition: all 0.3s ease-in-out;
-}
-.element:hover {
-  background-color: red;
 }
 
-🔹 8. ANIMACIONES CSS
+¿Para qué sirve?
+➡️ Para que tu sitio sea responsivo y se vea bien en cualquier dispositivo.
+
+Tamaño	Uso
+
+480px	Móviles
+768px	Tablets
+1024px	Laptops
+1200px+	Desktops
+
+
+---
+
+✨ 7. TRANSICIONES Y ANIMACIONES
+
+🎬 Transiciones (cambios suaves)
+
+.button {
+transition: background-color 0.3s ease;
+}
+
+🔄 Animaciones (movimiento continuo)
+
 @keyframes mover {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(100px); }
+0% { transform: translateX(0); }
+100% { transform: translateX(100px); }
 }
+
 .elemento {
-  animation: mover 1s infinite alternate;
+animation: mover 2s infinite alternate;
 }
 
-🔹 9. UNIDADES Y MEDIDAS
-Absolutas: px, cm, mm, in
-Relativas: %, em, rem, vw, vh
-em: relativo al padre
-rem: relativo al html
-vw: porcentaje del ancho de la ventana
-vh: porcentaje del alto de la ventana
+¿Para qué sirve?
+➡️ Mejora la experiencia visual sin usar JavaScript.
 
-🔹 10. OPTIMIZACIÓN DE RECURSOS
-- Usa imágenes comprimidas (webp, jpeg optimizado)
-- Usa lazy loading en imágenes: <img loading="lazy">
-- Minifica tu CSS y JS
-- Usa variables CSS:
-:root {
-  --main-color: #333;
-}
-body {
-  color: var(--main-color);
-}
-- Usa font-display: swap para mejorar tiempos de carga de fuentes
 
-🔹 11. BONUS: UTILIDADES EXPRESS
-.center-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.center-grid {
-  display: grid;
-  place-items: center;
-}
-@media (max-width: 768px) {
-  .hide-mobile {
-    display: none;
-  }
-}
-.ellipsis {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
+---
 
-🧾 CONSEJOS GENERALES PARA EL EXAMEN
-✅ Usa clases descriptivas (.menu-principal, .btn-secundario)
-✅ Escribe primero el HTML estructurado, luego aplica el CSS
-✅ Siempre verifica el orden de los selectores y la cascada
-✅ Si algo no se centra: revisa el display, width, y margin: auto
-✅ Valida tu HTML con: https://validator.w3.org/
+🌙 8. EJERCICIO: MODO CLARO Y OSCURO
 
-🔹 CSS Position (posicionamiento)
-position: static | relative | absolute | fixed | sticky;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modo Claro/Oscuro</title>
+  <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  <input type="checkbox" id="modo" />
+  <label for="modo" class="switch">🌙 / ☀️</label>
 
-1. static: Por defecto. No admite top/right/left/bottom.
-2. relative: Se posiciona desde su lugar original.
-3. absolute: Sacado del flujo normal, respecto a contenedor posicionado.
-4. fixed: Fijo en pantalla, no se mueve al hacer scroll.
-5. sticky: Se pega al llegar al umbral (top: X).
-
-⚙️ Propiedades de posición
-- top, bottom, left, right
-- z-index: Control de superposición
-
-📚 Comparativa rápida
-Valor     Flujo   Referencia    Se mueve con scroll
-static    Sí      Normal        Sí
-relative  Sí      Su lugar      Sí
-absolute  No      Ancestro      Sí
-fixed     No      Ventana       No
-sticky    Sí/No   Umbral        Depende
-
-🛠️ Ejemplo práctico
-<div class="wrapper">
-  <div class="rel">Contenedor relativo</div>
-  <div class="abs">Contenedor absoluto</div>
-</div>
-.wrapper {
-  position: relative;
-}
-.rel {
-  position: relative;
-  top: 10px;
-}
-.abs {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-}
-
-🔹 CSS Transforms
-.element {
-  transform: none | matrix(...) | translate(...) | rotate(...) | scale(...) | skew(...);
-}
-translate(30px, 50%);
-rotate(45deg);
-scale(1.2, 0.8);
-skew(30deg, 10deg);
-matrix(a, b, c, d, e, f);
-
-transform-origin: left top;
-transform-origin: 20px 50%;
-
-transform: translate(0,100px) scale(5);
-
-transform-style: preserve-3d;
-
-.card {
-  transform-origin: bottom center;
-  transform: translateY(-10px) scale(1.05);
-  transition: transform 0.3s ease;
-}
-.card:hover {
-  transform: translateY(0) scale(1.1);
-}
-
-**EJEMPLO CARRUSEL**:
-HTML
-<div class="carousel">
-  <input type="radio" name="slides" id="slide1" checked>
-  <input type="radio" name="slides" id="slide2">
-  <input type="radio" name="slides" id="slide3">
-
-  <div class="slides">
-    <div class="slide s1">🌄 Imagen 1</div>
-    <div class="slide s2">🏞️ Imagen 2</div>
-    <div class="slide s3">🌅 Imagen 3</div>
-  </div>
-
-  <div class="nav">
-    <label for="slide1"></label>
-    <label for="slide2"></label>
-    <label for="slide3"></label>
-  </div>
-</div>
+  <main>
+    <h1>¡Hola, Angélica!</h1>
+    <p>Este es un modo claro/oscuro sin usar JavaScript.</p>
+  </main>
+</body>
+</html>
 
 CSS
-.carousel {
-  width: 300px;
-  overflow: hidden;
-  position: relative;
-  margin: auto;
+/* Estilos base */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  transition: background-color 0.4s, color 0.4s;
 }
 
-.slides {
-  display: flex;
-  width: 300%;
-  transition: transform 0.5s ease-in-out;
+main {
+  padding: 2rem;
+  text-align: center;
 }
 
-.slide {
-  width: 100%;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 200px;
-  font-size: 2rem;
-  background: #eee;
-}
-
-input[type="radio"] {
+/* Ocultamos el checkbox */
+#modo {
   display: none;
 }
 
-#slide1:checked ~ .slides {
-  transform: translateX(0%);
-}
-#slide2:checked ~ .slides {
-  transform: translateX(-100%);
-}
-#slide3:checked ~ .slides {
-  transform: translateX(-200%);
-}
-
-.nav {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 10px;
-}
-.nav label {
-  width: 10px;
-  height: 10px;
-  background: gray;
-  border-radius: 50%;
-  display: inline-block;
+/* Estilo del botón/label */
+.switch {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  background: #ddd;
+  padding: 0.5rem 1rem;
+  border-radius: 2rem;
   cursor: pointer;
+  font-size: 1.2rem;
+  user-select: none;
+  box-shadow: 0 0 8px #ccc;
+  transition: background 0.3s;
 }
 
-Cosas clave para recordar:
-Se usan radio buttons invisibles para controlar qué slide se muestra.
-.slides es un flex container ancho que se mueve con transform.
-Las label actúan como los botones del carrusel.
+/* MODO OSCURO */
+#modo:checked ~ main {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+#modo:checked ~ .switch {
+  background: #333;
+  color: #fff;
+}
+
+---
+
+🎠 9. CARRUSEL SENCILLO EN HTML & CSS
+
+<div class="carousel">  
+  <div class="carousel-track">  
+    <img src="img1.jpg" alt="">  
+    <img src="img2.jpg" alt="">  
+    <img src="img3.jpg" alt="">  
+  </div>  
+</div>  .carousel {
+width: 300px;
+overflow: hidden;
+}
+
+.carousel-track {
+display: flex;
+animation: slide 9s infinite;
+}
+
+.carousel-track img {
+width: 300px;
+height: auto;
+}
+
+@keyframes slide {
+0%   { transform: translateX(0); }
+33%  { transform: translateX(-300px); }
+66%  { transform: translateX(-600px); }
+100% { transform: translateX(0); }
+}
+
+➡️ Explicación: Las imágenes se colocan en fila y se mueven horizontalmente con una animación.
+
+
+---
+
+🛠️ 10. OPTIMIZACIÓN
+
+Usa imágenes .webp y compresión.
+
+Aplica loading="lazy" para que carguen solo cuando se vean.
+
+Usa variables CSS para consistencia.
+
+Minifica CSS/JS en producción.
+
+
+
+
+**ejemplo carrusel jhon:**
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+  <title>Landing Page</title>
+
+    <style>
+        *{
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        }
+
+
+
+
+    body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    .carrusel {
+        width: 100%;
+        max-width: 400px;
+        padding: 100px;
+        margin: 30px auto;
+        overflow: hidden;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+
+    .carrusel__contenido {
+        display: flex;
+        width: 400%;
+        animation: slide 20s infinite;
+    }
+
+    .contenido__slide {
+        width: 100%;
+        flex-shrink: 0;
+    }
+
+    .contenido__slide img {
+        width: 25%;
+        display: block;
+    }
+
+    @keyframes slide {
+        0%   { transform: translateX(0%); }
+        25%  { transform: translateX(-100%); }ww
+        50%  { transform: translateX(-200%); }
+        75%  { transform: translateX(-300%); }
+        100% { transform: translateX(0%); }
+    }
+
+    </style>
+</head>
+
+<body>
+
+<div class="carrusel">
+
+### **Propiedades CSS y lo que controlan**  
+| **Propiedad** | **Descripción** |
+|--------------|----------------|
+| `width` | Define el ancho exacto de la pantalla o ventana. |
+| `min-width` | Establece el ancho mínimo para aplicar los estilos. |
+| `max-width` | Establece el ancho máximo para aplicar los estilos. |
+| `height` | Define la altura exacta de la pantalla o ventana. |
+| `min-height` | Establece la altura mínima para aplicar los estilos. |
+| `max-height` | Establece la altura máxima para aplicar los estilos. |
+| `orientation` | Detecta si el dispositivo está en **portrait (vertical)** o **landscape (horizontal)**. |
+| `aspect-ratio` | Relación entre el ancho y alto (ej. **16/9** o **4/3**). |
+| `resolution` | Densidad de píxeles (ej. para **pantallas retina**, en **dpi** o **dppx**). |
+| `prefers-color-scheme` | Detecta si el usuario prefiere **modo oscuro** o **modo claro**. |
+| `pointer` | Detecta si el dispositivo usa un **puntero** (mouse, táctil, etc.). |
+| `hover` | Detecta si el dispositivo permite **hover** (pasar el mouse por encima). |
+| `display-mode` | Detecta si el sitio está en **modo standalone, fullscreen o navegador**. |
+
+---
+
+### **Propiedades de posición en CSS**  
+| **Propiedad** | **Descripción** |
+|--------------|----------------|
+| `position: static;` | Posición por defecto de todos los elementos. No acepta `top`, `left`, `right`, `bottom`. |
+| `position: relative;` | Permite mover un elemento **en relación con su posición original** sin afectar otros elementos. |
+| `position: absolute;` | Se **saca del flujo normal** y se posiciona con respecto a su **ancestro posicionado** (`relative`, `absolute`, `fixed`). |
+| `position: fixed;` | Se mantiene **fijo en la ventana**, no se mueve con el scroll. |
+| `position: sticky;` | Se comporta **como `relative` hasta llegar a un umbral**, luego actúa como `fixed`. |
+
+### **Propiedades relacionadas con la posición**  
+| **Propiedad** | **Descripción** |
+|--------------|----------------|
+| `top, left, right, bottom` | Define la distancia desde el borde del elemento. Funciona con `relative`, `absolute`, `fixed`, y `sticky`. |
+| `z-index` | Controla la superposición de elementos (mayor valor = más adelante). |
+
+---
+
+### **Comparativa rápida de posición**  
+| **Valor** | **Flujo** | **Referencia** | **Se mueve con scroll?** |
+|-----------|---------|---------------|------------------|
+| `static`  | ✅ Sí   | Normal        | ✅ Sí             |
+| `relative`| ✅ Sí   | Su lugar      | ✅ Sí             |
+| `absolute`| ❌ No   | Ancestro      | ✅ Sí             |
+| `fixed`   | ❌ No   | Ventana       | ❌ No             |
+| `sticky`  | 🔄 Sí/No | Umbral        | 🔄 Depende        |
+  <div class="carrusel__contenido">
+    <div class="contenido__slide"><img src="https://i.ibb.co/4hjtRQF/calificaciones-1.png" alt="Slide 1"></div>
+    <div class="contenido__slide"><img src="https://i.ibb.co/fVLcBrkk/calificaciones-2.png" alt="Slide 2"></div>
+    <div class="contenido__slide"><img src="https://i.ibb.co/mVy212Zb/calificaciones-3.png" alt="Slide 3"></div>
+    <div class="contenido__slide"><img src="https://i.ibb.co/0yfGGBCt/calificaciones-4.png" alt="Slide 3"></div>
+ 
+  </div>
+</div>
+</body>
+</html>
+
+
+
 
